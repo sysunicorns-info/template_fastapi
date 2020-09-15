@@ -11,11 +11,14 @@
     },
     "python.terminal.activateEnvironment":true,
     "terminal.integrated.env.linux": {
+        "PYTHONPATH": "${workspaceFolder}/src:${env:PYTHONPATH}",
+        "PATH": "${workspaceFolder}/src:${env:PATH}"
     },
+    "python.envFile": "${workspaceFolder}/project.env",
     "python.testing.pytestPath": "pytest",
     "python.analysis.memory.keepLibraryLocalVariables": true,
     "python.testing.pytestArgs": [
-        "test",
+        "tests",
         "--import-mode=append"
     ],
     "python.testing.unittestEnabled": false,
