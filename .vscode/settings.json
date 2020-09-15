@@ -1,0 +1,24 @@
+{
+    "python.pythonPath": "${workspaceFolder}/.venv/bin/python3.8",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/*.pyc": {"when": "$(basename).py"}, 
+        "**/__pycache__": true
+    },
+    "python.terminal.activateEnvironment":true,
+    "terminal.integrated.env.linux": {
+    },
+    "python.testing.pytestPath": "pytest",
+    "python.analysis.memory.keepLibraryLocalVariables": true,
+    "python.testing.pytestArgs": [
+        "test",
+        "--import-mode=append"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.pytestEnabled": true
+}
