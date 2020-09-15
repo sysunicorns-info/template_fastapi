@@ -1,3 +1,4 @@
+import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.types import Receive, Scope, Send
@@ -8,6 +9,7 @@ from .service import service_container_proxy
 # Load After Initialization of all Container
 from .api import api_router, API_ROUTER_PREFIX
 
+logger = logging.getLogger('application')
 
 class Application(FastAPI):
 
@@ -43,9 +45,11 @@ class Application(FastAPI):
         return await self.fastapi.__call__(scope=scope, receive=receive, send=send)
 
     async def handle_event_startup(self):
-        print("startup")
+        logger.debug("Event StartUp Handle Start")
         await application_container_proxy().database().init_pool();
+        logger.debug("Event StartUp Handle End")
 
     async def handle_event_shutdown(self):
-        print("shutdown")
+        logger.debug("Event Shutdown Handle Start")
         await application_container_proxy().database().close_pool();
+        logger.debug("Event Shutdown Handle End")

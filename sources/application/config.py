@@ -15,7 +15,7 @@ LOGGING_CONFIG = {
             "datefmt": "%Y/%m/%d %I:%M:%S",
             "use_colors": None,
         },
-        "backend": {
+        "application": {
             "()": "uvicorn.logging.DefaultFormatter",
             "fmt": "%(asctime)s # APP: %(levelprefix)s %(message)s",
             "datefmt": "%Y/%m/%d %I:%M:%S",
@@ -33,8 +33,8 @@ LOGGING_CONFIG = {
             "class": "logging.StreamHandler",
             "stream": "ext://sys.stderr",
         },
-        "backend": {
-            "formatter": "backend",
+        "application": {
+            "formatter": "application",
             "class": "logging.StreamHandler",
             "stream": "ext://sys.stderr",
         },
@@ -45,7 +45,7 @@ LOGGING_CONFIG = {
         },
     },
     "loggers": {
-        "backend": {"handlers": ["backend"], "level": "DEBUG"},
+        "application": {"handlers": ["application"], "level": "DEBUG"},
         "uvicorn": {"handlers": ["default"], "level": "INFO"},
         "uvicorn.error": {"level": "INFO"},
         "uvicorn.access": {"handlers": ["access"], "level": "INFO", "propagate": False},

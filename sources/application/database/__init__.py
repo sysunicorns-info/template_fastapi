@@ -5,7 +5,7 @@ from aiopg.sa import create_engine, Engine
 import asyncio
 from contextlib import AbstractAsyncContextManager
 
-logger = logging.getLogger('backend')
+logger = logging.getLogger('application')
 
 class Database():
 
@@ -59,10 +59,13 @@ class Database():
         return await self.engine.acquire()
 
     async def close_pool(self):
-        print('close')
-        self.engine.close()
-        await self.engine.wait_closed()
-        del self.engine
+        logger.debug("Close Pool of Database Engine")
+        if self.engine is not None:
+            self.engine.close()
+            await self.engine.wait_closed()
+            del self.engine
+        else:
+            logger.warning("Engine Already Close or Not Init")
 
     def __del__(self):
         print("db del")

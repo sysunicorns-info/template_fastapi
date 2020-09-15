@@ -11,7 +11,8 @@ if __name__ == "__main__":
         host=_config.server_host,
         port=_config.server_port,
         log_level=_config.server_log_level,
-        log_config=_config.server_log_config
+        log_config=_config.server_log_config,
+        lifespan="on"
     )
 else:
     # Instanciate Application
