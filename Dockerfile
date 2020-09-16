@@ -5,7 +5,7 @@ WORKDIR /opt/template_fastapi
 ENV PATH "${PATH}:/opt/template_fastapi/sources"
 ENV PYTHONPATH "${PYTHONPATH}:/opt/template_fastapi/sources"
 
-EXPOSE 8080/tcp
+EXPOSE 8080
 
 RUN \
  apk add --no-cache postgresql-libs make && \
