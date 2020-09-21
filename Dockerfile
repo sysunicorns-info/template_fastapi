@@ -2,6 +2,8 @@ FROM python:3.8.5-alpine
 
 WORKDIR /opt/template_fastapi
 
+VOLUME ["/opt/template_fastapi/data"]
+
 ENV PATH "${PATH}:/opt/template_fastapi/sources"
 ENV PYTHONPATH "${PYTHONPATH}:/opt/template_fastapi/sources"
 
