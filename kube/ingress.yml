@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: certmanager-issuer
+    "kubernetes.io/ingress.class": "nginxprivate"
+  name: templatefastapi-ingress
+  namespace: templatefastapi
+spec:
+  rules:
+  - host: templatefastapi.kubeunicorns.info
+    http:
+      paths:
+      - backend:
+          serviceName: templatefastapi-service
+          servicePort: 80
+        path: /
+  tls: # < placing a host in the TLS config will indicate a certificate should be created
+  - hosts:
+    - templatefastapi.kubeunicorns.info
+    secretName: templatefastpi-cert # < cert-manager will store the created certificate in this secret.

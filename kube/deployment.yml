@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: templatefastapi-deployment
+  labels:
+    app: templatefastapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: templatefastapi
+  template:
+    metadata:
+      labels:
+        app: templatefastapi
+    spec:
+      containers:
+      - name: templatefastapi
+        image: "docker.pkg.github.com/sysunicorns-info/template_fastapi/template_fastapi:latest"
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+            - name: templatefastapi-volume
+              mountPath: "/opt/template_fastapi/data"
+      imagePullSecrets:
+      - name: dockerconfigjson-github-com
+      volumes:
+      - name: templatefastapi-volume
+        persistentVolumeClaim:
+          claimName: templatefastapi-pvc
